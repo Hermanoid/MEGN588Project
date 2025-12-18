@@ -1,0 +1,13 @@
+reset;
+
+model project.mod;
+data l.dat;
+data r.dat;
+data params.dat
+
+
+option solver cplex;
+option display_1col -1, display_transpose -1;
+solve;
+
+display x;
