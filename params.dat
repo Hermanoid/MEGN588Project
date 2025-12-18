@@ -18,4 +18,4 @@ set P_S[clarinet] :=  C1 C2 C3;
 
 
 # TWEAK ME!
-param d_weight := 0.0;
+param d_weight := 1.0;

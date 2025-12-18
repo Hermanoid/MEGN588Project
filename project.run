@@ -10,4 +10,14 @@ option solver cplex;
 option display_1col -1, display_transpose -1;
 solve;
 
-display x;
+# display x;
+
+printf {m in M, p in P, b in D, e in D} "%s,%s,%s,%s,%s\n",
+  m, p, b, e, x[m, p, b, e] > edges.csv;
+
+printf{f in F, s in S} "%s,%s,%.4f\n",
+  f, s, d[f, s] > section_diameters.csv;
+
+# Close the file to ensure data is written to disk immediately
+close edges.csv;
+close section_diameters.csv;
