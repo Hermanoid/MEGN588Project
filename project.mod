@@ -5,7 +5,7 @@ param n_moves; # Number of moves. n_forms = M + 1
 param n_sections; # Number of sections
 
 set F ordered; # Forms (n_moves+1, "Sets" in marching band terminology)
-set M within F; # Moves (n_moves. Move m goes from form m to form m+1)
+set M within F ordered; # Moves (n_moves. Move m goes from form m to form m+1)
 set P; # Players (n_players)
 set S; # Sections (n_sections)
 set D; # Dots (n_players)
@@ -48,7 +48,7 @@ s.t. one_player_per_dot_last{e in D}:
     sum{b in D, p in P} x[last(M),p,b,e] = 1;
 
 # A player entering a "node" (dot) must leave it in the next move.
-s.t. player_flow{p in P, m in M: ord(m) < card(M), b in D}:
+s.t. player_flow{m in M, p in P, b in D: ord(m) < card(M)}:
     sum{e in D} x[m,p,b,e] = sum{e in D} x[next(m),p,e,b];
 
 # If the next constraint was normal programming, it would seven levels of for-loops!

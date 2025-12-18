@@ -5,18 +5,17 @@ param n_sections := 8;
 set F := 1 2 3;
 set M := 1 2;
 set P := T1 T2 T3 R1 R2 R3 U1 U2 F1 F2 F3 S1 S2 B1 B2 B3 Q1 C1 C2 C3;
-set S := trumpet trombone tuba flute snare bass quad clarinet
+set S := trumpet trombone tuba flute snare bass quad clarinet;
 set D := 1..n_players;
-set P_S :=
-trumpet   T1 T2 T3
-trombone  R1 R2 Rs3
-tuba      U1 U2
-flute     F1 F2 F3
-snare     S1 S2
-bass      B1 B2 B3
-quad      Q1
-clarinet  C1 C2 C3
-;
+set P_S[trumpet] :=   T1 T2 T3;
+set P_S[trombone] :=  R1 R2 R3;
+set P_S[tuba] :=      U1 U2;
+set P_S[flute] :=     F1 F2 F3;
+set P_S[snare] :=     S1 S2;
+set P_S[bass] :=      B1 B2 B3;
+set P_S[quad] :=      Q1;
+set P_S[clarinet] :=  C1 C2 C3;
+
 
 # TWEAK ME!
 param d_weight := 0.0;

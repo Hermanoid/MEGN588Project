@@ -1,9 +1,9 @@
 reset;
 
 model project.mod;
+data params.dat;
 data l.dat;
 data r.dat;
-data params.dat
 
 
 option solver cplex;
