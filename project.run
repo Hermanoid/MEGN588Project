@@ -7,6 +7,8 @@ data r.dat;
 
 
 option solver cplex;
+#option cplex_options 'timelimit=10';
+option cplex_options 'mipgap=0.1 outlev=1';
 option display_1col -1, display_transpose -1;
 solve;
 
