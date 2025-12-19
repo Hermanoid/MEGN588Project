@@ -14,6 +14,7 @@ set P_S{S} within P; # Players in each section
 param l{m in M, b in D, e in D} >= 0; # distance between each pair of dots from move m-1 to move m
 param r{f in F, d1 in D, d2 in D} >= 0; # distance between each pair of dots in form f
 # I don't think x and y coordinates of dots?
+param speed{m in M} >= 0; # speed limit for each move
 
 param d_weight >= 0; # weight for distance between players in objective function
 # ^^ We could index this on section to weight some sections more heavily
@@ -81,3 +82,7 @@ s.t. section_diameter_starts{m in M, s in S, d1 in D, d2 in D}:
 # So we sum over the starts for each edge to detect dot membership
 s.t. section_diameter_last{s in S, d1 in D, d2 in D}:
     d[last(F),s] >= r[last(F),d1,d2] * (sum{p1 in P_S[s]} sum{p2 in P_S[s]: p1 != p2} sum{b in D} (x[last(M),p1,b,d1] + x[last(M),p2,b,d2]) - 1);
+
+# Preclude too-long steps
+s.t. speed_limit{m in M, p in P, b in D, e in D}:
+    l[m,b,e] * x[m,p,b,e] <= speed[m];

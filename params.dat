@@ -16,6 +16,10 @@ set P_S[bass] :=      B1 B2 B3;
 set P_S[quad] :=      Q1;
 set P_S[clarinet] :=  C1 C2 C3;
 
+param speed := 
+1 20
+2 20
+;
 
 # TWEAK ME!
 param d_weight := 1.0;
