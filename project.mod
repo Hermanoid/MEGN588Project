@@ -66,6 +66,14 @@ s.t. player_flow{m in M, p in P, dot in D: ord(m) < card(M)}:
 # - If player one is in dot d1 and player two is in dot d2, then the sum will be exactly 2, so -1 will create a positive lower bound
 # - If only one player is in a dot, the sum will be 1 and the lower bound will be zero (thrown away)
 # - Similarly the LB will be negative if neither player is in a dot (also thrown away)
+# s.t. section_diameter_starts{m in M, s in S, d1 in D, d2 in D: d1<d2}:
+#     d[m,s] >= r[m,d1,d2] * (sum{p1 in P_S[s]} sum{e in D} (x[m,p1,d1,e])  + sum{p2 in P_S[s]} sum{e in D} (x[m,p2,d2,e]) - 1);
+
+# # The same thing but for the last form (endpoints of the last move)
+# # So we sum over the starts for each edge to detect dot membership
+# s.t. section_diameter_last{s in S, d1 in D, d2 in D: d1<d2}:
+#     d[last(F),s] >= r[last(F),d1,d2] * (sum{p1 in P_S[s]} sum{b in D} (x[last(M),p1,b,d1])  + sum{p2 in P_S[s]} sum{b in D} (x[last(M),p2,b,d2]) - 1);
+
 s.t. section_diameter_starts{m in M, s in S, d1 in D, d2 in D: d1<d2}:
     d[m,s] >= r[m,d1,d2] * (sum{p1 in P_S[s]} sum{p2 in P_S[s]: p1 != p2} sum{e in D} (x[m,p1,d1,e] + x[m,p2,d2,e]) - 1);
 
