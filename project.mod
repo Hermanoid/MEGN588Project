@@ -48,8 +48,8 @@ s.t. one_player_per_dot_last{e in D}:
     sum{b in D, p in P} x[last(M),p,b,e] = 1;
 
 # A player entering a "node" (dot) must leave it in the next move.
-s.t. player_flow{m in M, p in P, b in D: ord(m) < card(M)}:
-    sum{e in D} x[m,p,b,e] = sum{e in D} x[next(m),p,e,b];
+s.t. player_flow{m in M, p in P, dot in D: ord(m) < card(M)}:
+    sum{b in D} x[m,p,b,dot] = sum{e in D} x[next(m),p,dot,e];
 
 # If the next constraint was normal programming, it would seven levels of for-loops!
 # Fortunately the section list and list of players in each section is ~sqrt the number of dots, which should help some with complexity.
