@@ -23,7 +23,7 @@ var d{f in F, s in S} >= 0; # distance between players in section s in form f
 
 minimize movement_and_spacing:
     sum{m in M, b in D, e in D, p in P} l[m,b,e] * x[m,p,b,e]
-    + d_weight * sum{f in F, s in S} d[f,s];
+    + d_weight * sum{f in F, s in S} card(P_S[s]) * d[f,s];
 
 
 s.t. each_player_must_have_one_move{m in M, p in P}:
